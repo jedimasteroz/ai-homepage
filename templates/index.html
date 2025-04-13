@@ -15,6 +15,7 @@
     body {
       background: #0a0a0a;
       color: #e0e0e0;
+      cursor: url('https://cur.cursors-4u.net/cursors/cur-9/cur817.cur'), auto; /* Jedi lightsaber cursor */
     }
     nav {
       position: fixed;
@@ -100,6 +101,25 @@
     .chatbot:hover {
       box-shadow: 0 0 20px #00ffcc;
     }
+    .slideshow {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      height: 200px;
+    }
+    .slideshow img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .slideshow img.active {
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
@@ -111,9 +131,21 @@
   </nav>
   <section class="hero">
     <div id="particles-js"></div>
-    <h1>AI Future</h1>
+    <h1>The Force of AI</h1>
     <p>Discover the power of intelligence</p>
     <button class="cta-button">Explore Now</button>
+    <div class="slideshow">
+      <img src="/static/frame_0000.png" alt="Frame 0">
+      <img src="/static/frame_0001.png" alt="Frame 1">
+      <img src="/static/frame_0002.png" alt="Frame 2">
+      <img src="/static/frame_0003.png" alt="Frame 3">
+      <img src="/static/frame_0004.png" alt="Frame 4">
+      <img src="/static/frame_0005.png" alt="Frame 5">
+      <img src="/static/frame_0006.png" alt="Frame 6">
+      <img src="/static/frame_0007.png" alt="Frame 7">
+      <img src="/static/frame_0008.png" alt="Frame 8">
+      <img src="/static/frame_0009.png" alt="Frame 9">
+    </div>
   </section>
   <div class="chatbot" onclick="alert('AI Chatbot coming soon!')">AI</div>
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -141,6 +173,17 @@
         }
       }
     });
+    const images = document.querySelectorAll('.slideshow img');
+    let current = 0;
+    function showNextImage() {
+      images[current].classList.remove('active');
+      current = (current + 1) % images.length;
+      images[current].classList.add('active');
+    }
+    if (images.length > 0) {
+      images[0].classList.add('active');
+      setInterval(showNextImage, 2000);
+    }
   </script>
 </body>
 </html>
